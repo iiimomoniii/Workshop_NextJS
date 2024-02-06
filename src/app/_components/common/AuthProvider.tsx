@@ -1,5 +1,5 @@
 "use client"
-import { useRouter } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 import React from 'react'
 
 type Props = {
@@ -7,10 +7,14 @@ type Props = {
 
 export default function AuthProvider({ children }: {children : React.ReactNode }) {
     const router = useRouter();
+    const path = usePathname();
     //Redirect to stock when http://localhost:3000/ => http://localhost:3000/stock
-    router.push("/stock")
-    return null;
-//   return (
-//     <div>{children}</div>
-//   )
+    //validate path 
+    if (path != "/stock") {
+        router.push("/stock")
+        return null;
+    }
+    return (
+    <div>{children}</div>
+    )
 }
