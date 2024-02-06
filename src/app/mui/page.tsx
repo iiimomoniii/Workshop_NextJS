@@ -10,7 +10,7 @@ export default function MUIDemo({}: Props) {
         <Stack spacing={2} direction="row">
             <Button variant="text">Text</Button>
             <Button variant="contained">Contained</Button>
-            <Button variant="outline">Outlined</Button>
+            <Button variant="outlined">Outlined</Button>
         </Stack>
     </div>
   )
