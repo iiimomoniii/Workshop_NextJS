@@ -9,7 +9,7 @@ export default function Stock({}: Props) {
     // <Box sx={{ mt:1 }}> Stock</Box>
     <Box sx={{ mt:1 }}>
       Stock
-      <Image src="/static/img/next_register.jpg" width={180} height={35} alt="logo" />
+      <Image src="https://imgupscaler.com/images/samples/animal-before.webp" width={500} height={300} alt="logo" />
     </Box>
   )
 }
