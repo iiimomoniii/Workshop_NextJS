@@ -66,6 +66,7 @@ const Header = ({ handleDrawerOpen, open }: Props) => {
         </IconButton>
         <Typography variant="h6" noWrap>
           CMStock Workshop with ReactJS - Typescript (TS) V.
+          {/* use param from env */}
           {process.env.NEXT_PUBLIC_APP_VERSION}
         </Typography>
         <Box sx={{ flexGrow: 1 }} />
