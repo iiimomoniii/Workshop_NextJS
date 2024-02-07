@@ -10,7 +10,7 @@ export default function AuthProvider({ children }: {children : React.ReactNode }
     const path = usePathname();
     //Redirect to stock when http://localhost:3000/ => http://localhost:3000/stock
     //validate path 
-    if (path != "/stock") {
+    if (path == "/") {
         router.push("/stock")
         return null;
     }
