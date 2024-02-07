@@ -66,17 +66,26 @@ const DrawerHeader = styled('div')(({ theme }) => ({
   justifyContent: 'flex-end',
 }));
 
-export default function Sidebar() {
+//crate props for close sidenav from sidebar to header
+type Props = {
+  open : boolean;
+  handleDrawerClose : () => void;
+}
+
+//use open and handleDrawerClose
+export default function Sidebar({open, handleDrawerClose} : Props) {
   const theme = useTheme();
-  const [open, setOpen] = React.useState(true);
 
-  const handleDrawerOpen = () => {
-    setOpen(true);
-  };
+  //move stage to layout
+  // const [open, setOpen] = React.useState(true);
 
-  const handleDrawerClose = () => {
-    setOpen(false);
-  };
+  // const handleDrawerOpen = () => {
+  //   setOpen(true);
+  // };
+
+  // const handleDrawerClose = () => {
+  //   setOpen(false);
+  // };
 
   return (
     <Drawer

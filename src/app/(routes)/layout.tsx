@@ -1,3 +1,4 @@
+"use client"
 import React from 'react'
 import Box from "@mui/material/Box";
 import Header from '../_components/layout/Header';
@@ -8,11 +9,24 @@ type Props = {
 }
 
 export default function DefaultLayout({ children }: Props) {
+  
+  //create state for sidenav and header
+  const [open, setOpen] = React.useState(true);   //React.useState(true) = open sidenav to default
+
+  const handleDrawerOpen = () => {
+    setOpen(true);
+  };
+
+  const handleDrawerClose = () => {
+    setOpen(false);
+  };
+
   return (
     <section>
     <Box sx={{ display: "flex" }}>
-      <Header/>
-      <Sidebar/>
+      {/* pass open to Header*/}
+      <Header open={open} handleDrawerOpen={handleDrawerOpen}  />
+      <Sidebar open={open} handleDrawerClose={handleDrawerClose} />
       <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
         <DrawerHeader />
         {children}

@@ -49,19 +49,26 @@ const AppBar = styled(MuiAppBar, {
   }),
 }));
 
+//crate props for open sidenav from header to sidebar
+type Props = {
+  open : boolean;
+  handleDrawerOpen : () => void;
+}
 
-
-export default function Header() {
+//use open and handleDrawerOpen
+export default function Header({open, handleDrawerOpen}: Props) {
   const theme = useTheme();
-  const [open, setOpen] = React.useState(true);
 
-  const handleDrawerOpen = () => {
-    setOpen(true);
-  };
+  //move stage to layout
+  //const [open, setOpen] = React.useState(true);
 
-  const handleDrawerClose = () => {
-    setOpen(false);
-  };
+  // const handleDrawerOpen = () => {
+  //   setOpen(true);
+  // };
+
+  // const handleDrawerClose = () => {
+  //   setOpen(false);
+  // };
 
   return (
     <AppBar position="fixed" open={open}>
