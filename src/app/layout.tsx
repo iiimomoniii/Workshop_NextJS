@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import AuthProvider from "./_components/common/AuthProvider";
+import { ThemeProvider , createTheme } from "@mui/material";
+import ThemeRegistry from "./_components/ThemeRegistry/ThemeRegistry";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
@@ -14,11 +16,12 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+
   return (
     <html lang="en">
       <body className={inter.className}>
         <AuthProvider>
-          {children}
+          <ThemeRegistry >{children}</ThemeRegistry>
         </AuthProvider>
       </body>
     </html>
