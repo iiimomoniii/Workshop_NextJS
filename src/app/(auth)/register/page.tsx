@@ -2,80 +2,96 @@
 import { Box, Button, Card, CardContent, CardMedia, InputAdornment, TextField, Typography } from '@mui/material'
 import React, { useState } from 'react'
 import * as Icons from '@mui/icons-material';
-
+import { Controller, useForm } from "react-hook-form";
 interface User {
-  username : string;
-  password : string;
+  username: string;
+  password: string;
 }
 
 type Props = {}
 
 export default function Register({ }: Props) {
 
-  const [user, setUser] = useState<User>({username:"",password:""})
+  const initialValue: User = { username: "", password: "" }; //default value = ""
+
+  const { control, handleSubmit } = useForm<User>({
+    defaultValues: initialValue,
+    resolver: undefined
+  });
 
   const showForm = () => {
-    return <form onSubmit={()=> {
-      alert(JSON.stringify(user))
-    }}>
+    return <form onSubmit={handleSubmit((value:User)=>{
+      alert(JSON.stringify(value))
+    })}>
       {/* Username */}
-      <TextField
-        // set username and maintain old password
-        onChange={e=> setUser({username: e.target.value, password: user.password})}
-        variant="outlined"
-        margin="normal"
-        fullWidth
-        InputProps={{
-          startAdornment: (
-            <InputAdornment position="start">
-              <Icons.Email />
-            </InputAdornment>
-          ),
-        }}
-        label="Username"
-        autoComplete="email"
-        autoFocus
+      <Controller
+        name="username"
+        control={control}
+        render={({ field }) => (
+          <TextField
+            // onChange={field.onChange} value={field.value} = {...field}
+            {...field}
+            variant="outlined"
+            margin="normal"
+            fullWidth
+            InputProps={{
+              startAdornment: (
+                <InputAdornment position="start">
+                  <Icons.Email />
+                </InputAdornment>
+              ),
+            }}
+            label="Username"
+            autoComplete="email"
+            autoFocus
+          />
+        )}
       />
 
-        {/* Password */}
-        <TextField
-        // set password and maintain old username
-        onChange={e=> setUser({username: user.username, password: e.target.value})}
-        variant="outlined"
-        margin="normal"
-        fullWidth
-        InputProps={{
-          startAdornment: (
-            <InputAdornment position="start">
-              <Icons.Password />
-            </InputAdornment>
-          ),
-        }}
-        label="Password"
-        autoComplete="password"
-        autoFocus
+      {/* Password */}
+      <Controller
+        name="password"
+        control={control}
+        render={({ field }) => (
+          <TextField
+            {...field}
+            variant="outlined"
+            margin="normal"
+            fullWidth
+            InputProps={{
+              startAdornment: (
+                <InputAdornment position="start">
+                  <Icons.Password />
+                </InputAdornment>
+              ),
+            }}
+            label="Password"
+            autoComplete="password"
+            autoFocus
+          />
+        )}
       />
-       <Button
-          className="mt-8"
-          type="submit"
-          fullWidth
-          variant="contained"
-          color="primary"
-        >
-          Create
-        </Button>
+      <Button
+        className="mt-8"
+        type="submit"
+        fullWidth
+        variant="contained"
+        color="primary"
+      >
+        Create
+      </Button>
 
-        <Button
-          className="mt-4"
-          onClick={() => {
-      
-          }}
-          type="button"
-          fullWidth
-          variant="outlined"
-        >
-          Cancel
-        </Button>
+      <Button
+        className="mt-4"
+        onClick={() => {
+
+        }}
+        type="button"
+        fullWidth
+        variant="outlined"
+      >
+        Cancel
+      </Button>
     </form>
   }
 
@@ -94,3 +110,4 @@ export default function Register({ }: Props) {
     </Box>
   )
 }
+
