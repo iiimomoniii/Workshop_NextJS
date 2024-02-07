@@ -33,7 +33,7 @@ const theme = createTheme({
   typography: {
     fontFamily: roboto.style.fontFamily,
   },
-  spacing: 1, //ratio margin 1:1
+  spacing: 8, //ratio margin 1:8
   palette: {
     mode: "light",
     primary: process.env.NEXT_PUBLIC_IS_PRODUCTION == "1" ? red : blue,
