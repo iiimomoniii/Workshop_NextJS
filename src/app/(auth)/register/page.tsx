@@ -20,7 +20,7 @@ export default function Register({ }: Props) {
   });
 
   const showForm = () => {
-    return <form onSubmit={handleSubmit((value:User)=>{
+    return <form onSubmit={handleSubmit((value: User) => {
       alert(JSON.stringify(value))
     })}>
       {/* Username */}
@@ -31,6 +31,8 @@ export default function Register({ }: Props) {
           <TextField
             // onChange={field.onChange} value={field.value} = {...field}
             {...field}
+            error={true}
+            helperText={"Invalid Username"}
             variant="outlined"
             margin="normal"
             fullWidth
