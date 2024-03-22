@@ -16,8 +16,8 @@ import * as Yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useRouter } from "next/navigation";
 import { useSelector } from "react-redux";
-import { RootState } from "@/store/store";
-import { userSelector } from "@/store/slices/userSlice";
+import { RootState, useAppDispatch } from "@/store/store";
+import { add, userSelector } from "@/store/slices/userSlice";
 
 interface User {
   username: string;
@@ -35,7 +35,7 @@ export default function Login({}: Props) {
   });
 
   const reducer = useSelector(userSelector);
-
+  const dispatch = useAppDispatch();
   const {
     control,
     handleSubmit,
@@ -117,6 +117,7 @@ export default function Login({}: Props) {
         <Button
           className="mt-4"
           onClick={() => {
+            dispatch(add());
             router.push("/register");
           }}
           type="button"
@@ -146,7 +147,7 @@ export default function Login({}: Props) {
             position: relative;
             margin: 0;
             background-size: cover;
-            background-image: url("/static/img/bg4.jpg");
+            background-image: url("/static/img/login.jpg");
             text-align: center;
           }
         `}

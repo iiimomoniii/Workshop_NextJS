@@ -5,8 +5,10 @@ import * as Icons from '@mui/icons-material';
 import { Controller, useForm } from "react-hook-form";
 import * as Yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
+import { useRouter } from "next/navigation";
 import { useSelector } from 'react-redux';
-import { userSelector } from '@/store/slices/userSlice';
+import { userSelector, add } from '@/store/slices/userSlice';
+import { useAppDispatch } from '@/store/store';
 interface User {
   username: string;
   password: string;
@@ -15,8 +17,9 @@ interface User {
 type Props = {}
 
 export default function Register({ }: Props) {
-
+  const router = useRouter();
   const reducer = useSelector(userSelector);
+  const dispatch = useAppDispatch();
 
   const initialValue: User = { username: "", password: "" }; //default value = ""
   //validate usename and password by yup lib
@@ -103,7 +106,8 @@ export default function Register({ }: Props) {
       <Button
         className="mt-4"
         onClick={() => {
-
+          dispatch(add());
+          router.push("/login");
         }}
         type="button"
         fullWidth
@@ -125,7 +129,18 @@ export default function Register({ }: Props) {
           {showForm()}
         </CardContent>
       </Card>
-
+      <style jsx global>
+        {`
+          body {
+            min-height: 100vh;
+            position: relative;
+            margin: 0;
+            background-size: cover;
+            background-image: url("/static/img/register.jpg");
+            text-align: center;
+          }
+        `}
+      </style>
     </Box>
   )
 }
