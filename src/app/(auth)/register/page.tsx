@@ -5,6 +5,7 @@ import * as Icons from '@mui/icons-material';
 import { Controller, useForm } from "react-hook-form";
 import * as Yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
+import { useSelector } from 'react-redux';
 interface User {
   username: string;
   password: string;
@@ -14,14 +15,16 @@ type Props = {}
 
 export default function Register({ }: Props) {
 
+  const reducer = useSelector((state:any) => state.userReducer);
+
   const initialValue: User = { username: "", password: "" }; //default value = ""
   //validate usename and password by yup lib
+  
   const formValidateSchema = Yup.object().shape({
     username : Yup.string().required("Email is Required").trim(),
     password : Yup.string().required("Password is Required").trim()
   })
 
-  //send error message by errors in formState
   const { control, handleSubmit , formState: {errors} } = useForm<User>({
     defaultValues: initialValue,
     //bind formValidateSchema to resolver
@@ -116,7 +119,7 @@ export default function Register({ }: Props) {
 
         <CardContent>
           <Typography gutterBottom variant="h5" component="h2">
-            Register
+            Register ({reducer.count})
           </Typography>
           {showForm()}
         </CardContent>
