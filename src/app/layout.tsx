@@ -4,6 +4,7 @@ import "./globals.css";
 import AuthProvider from "./_components/common/AuthProvider";
 import { ThemeProvider , createTheme } from "@mui/material";
 import ThemeRegistry from "./_components/ThemeRegistry/ThemeRegistry";
+import ReduxProvider from "./_components/common/ReduxProvider";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
@@ -20,9 +21,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <AuthProvider>
-          <ThemeRegistry >{children}</ThemeRegistry>
-        </AuthProvider>
+        <ReduxProvider>
+          <AuthProvider>
+            <ThemeRegistry >{children}</ThemeRegistry>
+          </AuthProvider>
+        </ReduxProvider>
       </body>
     </html>
   );
