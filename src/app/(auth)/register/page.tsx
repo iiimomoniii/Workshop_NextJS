@@ -6,6 +6,7 @@ import { Controller, useForm } from "react-hook-form";
 import * as Yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useSelector } from 'react-redux';
+import { userSelector } from '@/store/slices/userSlice';
 interface User {
   username: string;
   password: string;
@@ -15,7 +16,7 @@ type Props = {}
 
 export default function Register({ }: Props) {
 
-  const reducer = useSelector((state:any) => state.userReducer);
+  const reducer = useSelector(userSelector);
 
   const initialValue: User = { username: "", password: "" }; //default value = ""
   //validate usename and password by yup lib
