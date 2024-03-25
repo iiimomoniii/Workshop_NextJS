@@ -7,7 +7,7 @@ import * as Yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useRouter } from "next/navigation";
 import { useSelector } from 'react-redux';
-import { userSelector, add } from '@/store/slices/userSlice';
+import { add, signUp, userSelector } from "@/store/slices/userSlice";
 import { useAppDispatch } from '@/store/store';
 interface User {
   username: string;
@@ -37,7 +37,7 @@ export default function Register({ }: Props) {
 
   const showForm = () => {
     return <form onSubmit={handleSubmit((value: User) => {
-      alert(JSON.stringify(value))
+      dispatch(signUp(value));
     })}>
       {/* Username */}
       <Controller

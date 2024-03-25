@@ -6,7 +6,7 @@ interface SignAction {
     password: string;
 }
 
-const signUp = createAsyncThunk("user/signUp", async (user: SignAction) => {
+export const signUp = createAsyncThunk("user/signUp", async (user: SignAction) => {
     //contain logic send request to backend for registration
     const response = await service.signUp(user);
     return response;
